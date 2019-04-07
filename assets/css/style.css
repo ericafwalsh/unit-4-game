@@ -1,0 +1,48 @@
+body {
+    background-image: url("../images/light-grey-terrazzo.png");
+}
+
+#instructions {
+    background-color: blanchedalmond;
+    margin: 10px;
+    padding: 20px;
+    font-family: 'Quicksand', sans-serif;
+    line-height: 30px;
+    width: 50%;
+}
+
+#randomNumber, #yourScore {
+    background-color: paleturquoise;
+    height: 60px;
+    margin: 10px;
+    padding: 20px;
+    font-family: 'Quicksand', sans-serif;
+    width: 50%;
+}
+
+#score {
+    background-color: darkturquoise;
+    margin: 10px;
+    padding: 20px;
+    font-family: 'Quicksand', sans-serif;
+    line-height: 30px;
+    width: 50%;
+}
+
+h1 {
+    background-color: lavender;
+    margin: 10px;
+    padding: 20px;
+    font-size: 40px;
+    font-family: 'Righteous', cursive;
+    width: 50%;
+}
+
+#crystals {
+    margin: 10px;
+    padding: 20px;
+}
+
+#announcement {
+    height: 20px;
+}
