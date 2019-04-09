@@ -16,31 +16,15 @@ $(document).ready(function () {
     }
 
     function resetGame () {
+
         targetNumber = Math.floor(Math.random() * 101) + 19;
-        totalScore = 0;    
-        document.getElementById("randomNumber").innerHTML = targetNumber;
-        document.getElementById("wins").innerHTML = "Wins: " + wins;
-        document.getElementById("losses").innerHTML = "Losses: " + losses;    
-        document.getElementById("scoreValue").innerHTML = "Your total score is: " + totalScore;
-
+        $("#randomNumber").text(targetNumber);   
+        $("#wins").text(wins);
+        $("#losses").text(losses);
+        totalScore = 0;
+        $("#scoreValue").text(totalScore);
+        
         //re-update the data-crystal value in the reset Game function
-    }
-
-    function winOrLose() {    
-
-        document.getElementById("scoreValue").innerHTML = "Your total score is: " + totalScore;
-
-        if (totalScore > targetNumber) {
-            losses++;
-            document.getElementById("announcement").innerHTML = "You lose";
-            resetGame();
-        }
-
-        else if (totalScore === targetNumber) {
-            wins++;
-            document.getElementById("announcement").innerHTML = "You win!";
-            resetGame(); 
-        }
     }
 
 
@@ -49,7 +33,20 @@ $(document).ready(function () {
         var crystalValue = ($(this).attr("data-crystalvalue"));
 
         totalScore += parseInt(crystalValue);
-        winOrLose();
+        
+        $("#scoreValue").text(totalScore);
+
+        if (totalScore > targetNumber) {
+            losses++;
+            $("#announcement").text("You lose");
+            resetGame();
+        }
+
+        else if (totalScore === targetNumber) {
+            wins++;
+            $("#announcement").text("You win!");
+            resetGame(); 
+        }
     });
 
     resetGame();
