@@ -2,71 +2,54 @@
 var wins = 0;
 var losses = 0;
 var targetNumber;
-var crystalValue1;
-var crystalValue2;
-var crystalValue3;
-var crystalValue4;
 var totalScore;
 
-function resetGame () {
-    targetNumber = Math.floor(Math.random() * 101) + 19;
-    crystalValue1 = Math.floor(Math.random() * 12) + 1;
-    crystalValue2 = Math.floor(Math.random() * 12) + 1;
-    crystalValue3 = Math.floor(Math.random() * 12) + 1;
-    crystalValue4 = Math.floor(Math.random() * 12) + 1;
-    totalScore = 0;    
-    document.getElementById("randomNumber").innerHTML = targetNumber;
-    document.getElementById("wins").innerHTML = "Wins: " + wins;
-    document.getElementById("losses").innerHTML = "Losses: " + losses;    
-    document.getElementById("scoreValue").innerHTML = "Your total score is: " + totalScore;
-}
-
-function winOrLose() {    
-
-    document.getElementById("scoreValue").innerHTML = "Your total score is: " + totalScore;
-
-    if (totalScore > targetNumber) {
-        losses++;
-        document.getElementById("announcement").innerHTML = "You lose";
-        resetGame();
-    }
-
-    else if (totalScore === targetNumber) {
-        wins++;
-        document.getElementById("announcement").innerHTML = "You win!";
-        resetGame(); 
-    }
-}
-
-
-// When a crystal is clicked, generates a random number
 $(document).ready(function () {
 
-    $("#crystal1").on("click", function () {
+    for (var i = 1; i < 5; i++) {
 
-        totalScore += crystalValue1;
+        var CrystalImage = $("<img>");
+        CrystalImage.addClass("crystals");
+        CrystalImage.attr("src", "../unit-4-game/assets/images/crystal" + i.toString() + ".png");
+        CrystalImage.attr("data-crystalvalue",Math.floor(Math.random() * 12) + 1);
+        $("#crystalDrawings").append(CrystalImage);
+    }
+
+    function resetGame () {
+        targetNumber = Math.floor(Math.random() * 101) + 19;
+        totalScore = 0;    
+        document.getElementById("randomNumber").innerHTML = targetNumber;
+        document.getElementById("wins").innerHTML = "Wins: " + wins;
+        document.getElementById("losses").innerHTML = "Losses: " + losses;    
+        document.getElementById("scoreValue").innerHTML = "Your total score is: " + totalScore;
+
+        //re-update the data-crystal value in the reset Game function
+    }
+
+    function winOrLose() {    
+
+        document.getElementById("scoreValue").innerHTML = "Your total score is: " + totalScore;
+
+        if (totalScore > targetNumber) {
+            losses++;
+            document.getElementById("announcement").innerHTML = "You lose";
+            resetGame();
+        }
+
+        else if (totalScore === targetNumber) {
+            wins++;
+            document.getElementById("announcement").innerHTML = "You win!";
+            resetGame(); 
+        }
+    }
+
+
+    $(".crystals").on("click", function () {
+
+        var crystalValue = ($(this).attr("data-crystalvalue"));
+
+        totalScore += parseInt(crystalValue);
         winOrLose();
-    });
-
-    $("#crystal2").on("click", function () {
-
-        totalScore += crystalValue2;
-        winOrLose();
-
-    });
-
-    $("#crystal3").on("click", function () {
-
-        totalScore += crystalValue3;
-        winOrLose();
-
-    });
-
-    $("#crystal4").on("click", function () {
-
-        totalScore += crystalValue4;
-        winOrLose();
-
     });
 
     resetGame();
